@@ -1,0 +1,39 @@
+name: Publish direct-linked table tiles
+
+on:
+  push:
+    branches: [email-assets]
+    paths:
+      - '.github/workflows/publish-table-tiles.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: email-assets
+
+      - name: Download table tiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p email/palecek-2026
+          curl -L --fail --retry 3 -o email/palecek-2026/06a_presidio.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-9a10-81f7-94b5-24ec08732cd5/raw?se=2026-09-18T22%3A56%3A34Z&sp=r&sv=2026-02-06&sr=b&scid=f85dfbee-a392-52e6-a0b6-063df3656352&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A05%3A51Z&ske=2026-09-19T19%3A05%3A51Z&sks=b&skv=2026-02-06&sig=rA5b1L6SucsR4EiokSBXJp9ylCOKawXFP7b3zMEU1tI%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/06b_shoreline.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-7ee4-81f7-9908-177a2e0ede4e/raw?se=2026-09-18T22%3A56%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=f5f3b6ff-db5f-5e15-926e-8c34911717c6&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A54%3A53Z&ske=2026-09-19T18%3A54%3A53Z&sks=b&skv=2026-02-06&sig=lafiqxCvQRfp7f7x3%2B/eQT0mpBcq64uT5oJLf03WYH0%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/06c_inverness.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-2c0c-81f7-a612-647c8e73cfa6/raw?se=2026-09-18T22%3A56%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=632900be-7fc9-55b7-b63d-0d87125be2f3&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A12%3A24Z&ske=2026-09-19T19%3A12%3A24Z&sks=b&skv=2026-02-06&sig=ogBVvr6UCRkk3MS4DvXhAU5VbCjLRCs5ojzBOSFBpkk%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/06d_tiburon.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-8b9c-81f7-9276-ff40524f7fd5/raw?se=2026-09-18T22%3A56%3A37Z&sp=r&sv=2026-02-06&sr=b&scid=839ac8b0-a8c9-57d8-b690-373ac95dd6d5&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A59%3A20Z&ske=2026-09-19T18%3A59%3A20Z&sks=b&skv=2026-02-06&sig=tZDKH8XpmOKG3RSBVA0rUFCwhSl/hToGOkKVDOFKXjQ%3D'
+
+      - name: Commit tiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add email/palecek-2026/06a_presidio.jpg email/palecek-2026/06b_shoreline.jpg email/palecek-2026/06c_inverness.jpg email/palecek-2026/06d_tiburon.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m "Add direct-linked PALECEK table tiles"
+          git push origin HEAD:email-assets
