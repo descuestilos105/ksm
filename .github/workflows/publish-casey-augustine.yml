@@ -1,0 +1,41 @@
+name: Publish Casey Augustine tiles
+on:
+  push:
+    branches: [email-assets]
+    paths:
+      - '.github/workflows/publish-casey-augustine.yml'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: email-assets
+      - name: Download tiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p email/palecek-2026
+          curl -L --fail --retry 3 -o email/palecek-2026/08a_dining_header.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-a520-81f7-a75a-56dd3c319517/raw?se=2026-09-18T23%3A13%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=8c462f0d-58ef-518a-982e-a6c3f2886a25&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A12%3A33Z&ske=2026-09-19T19%3A12%3A33Z&sks=b&skv=2026-02-06&sig=znuqBifrx92vpehpgTsR4u8YmxkrtA1M12NH6SM5LzY%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/08b_casey_lounge.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-b234-81f7-97b7-a4d186de0d82/raw?se=2026-09-18T23%3A13%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=c46cc7da-6aa9-56c8-8ea4-aee8ec437eab&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A32%3A06Z&ske=2026-09-19T18%3A32%3A06Z&sks=b&skv=2026-02-06&sig=MR9pDDP3%2BbN2P7Kbjy4o1cWtVhoDCbvH5ZFL3jWs5Po%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/08c_casey_armchair.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-082c-81f7-8cbe-9e0dd98446ac/raw?se=2026-09-18T23%3A13%3A48Z&sp=r&sv=2026-02-06&sr=b&scid=38363e1c-afe5-58d4-899f-699e3cdfbe3e&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A05%3A47Z&ske=2026-09-19T19%3A05%3A47Z&sks=b&skv=2026-02-06&sig=90sKHixSOaQLTydl3dGyFgDtfe89WQ8Z8r7wZja9vws%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/08d_casey_counter.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-73fc-81f7-86f2-c3a979e99e18/raw?se=2026-09-18T23%3A13%3A49Z&sp=r&sv=2026-02-06&sr=b&scid=b35e769b-28a3-51f7-b4f3-0ef476f64ff0&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A12%3A24Z&ske=2026-09-19T19%3A12%3A24Z&sks=b&skv=2026-02-06&sig=2x8C9RTGQmSEkEYMSwyptxgNedppRn2Gpp%2BnyxJMXcU%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/08e_casey_barstool.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-a074-81f7-8adf-b05b35f858ff/raw?se=2026-09-18T23%3A13%3A50Z&sp=r&sv=2026-02-06&sr=b&scid=af577765-10af-5f2f-8a9f-02a4aa5884cc&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A01%3A28Z&ske=2026-09-19T19%3A01%3A28Z&sks=b&skv=2026-02-06&sig=nEon4L3Kuh7t8TB60vf59HgLpQXUioq6Qd39Rf4IBuI%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/08f_dining_cta.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-1374-81f7-a644-06665a6805d6/raw?se=2026-09-18T23%3A13%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=9c43dd43-a2b0-5442-b6e2-c8485909f3a0&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A57%3A03Z&ske=2026-09-19T18%3A57%3A03Z&sks=b&skv=2026-02-06&sig=w9dxOd0l6%2BzQ4ZCPoS8sqcliy2tvgisQVKRK9P1zPwQ%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/09a_lighting_header.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-ac64-81f7-9876-6b82322caad5/raw?se=2026-09-18T23%3A13%3A54Z&sp=r&sv=2026-02-06&sr=b&scid=f71e2280-b35b-5db4-b4b4-cf8f2e8302b8&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A05%3A51Z&ske=2026-09-19T19%3A05%3A51Z&sks=b&skv=2026-02-06&sig=nZ7Gr5siPOGlVG4PwzwYVzz/CKCSzUErIQl9Vmah9ao%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/09b_augustine_sphere.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-8860-81f7-ba35-5401952da095/raw?se=2026-09-18T23%3A13%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=f6f8876d-e560-5291-89e1-eeadbffa4b09&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A59%3A16Z&ske=2026-09-19T18%3A59%3A16Z&sks=b&skv=2026-02-06&sig=oFw1JMR0aTTMzY20TD5sy9gmo7EIjbA0mhz/nLDAS2w%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/09c_augustine_cone.jpg 'https://sdmntprcentralus.oaiusercontent.com/files/00000000-eab4-81f5-a58a-7c33a7b1bb60/raw?se=2026-09-18T23%3A13%3A56Z&sp=r&sv=2026-02-06&sr=b&scid=aed0b074-bc22-52ab-810f-fc0317973ef0&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T19%3A01%3A29Z&ske=2026-09-19T19%3A01%3A29Z&sks=b&skv=2026-02-06&sig=g6gDA%2Bt4uPmTghU/Z63xjbUrhLIMEsUtWp2BUvM3O4Y%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/09d_augustine_chandelier.jpg 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-0ae4-81fd-a362-851ae66f065b/raw?se=2026-09-18T23%3A13%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=5493f39b-bc2f-5877-b5d2-6f3b091a9ef6&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A57%3A11Z&ske=2026-09-19T18%3A57%3A11Z&sks=b&skv=2026-02-06&sig=H/zAKmdcsbQkzqNqq3CmUKu/GIZDmH1hgbNgwxBNDP8%3D'
+          curl -L --fail --retry 3 -o email/palecek-2026/09e_lighting_cta.jpg 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-e5b0-81f7-96c8-0ba272ddad87/raw?se=2026-09-18T23%3A13%3A58Z&sp=r&sv=2026-02-06&sr=b&scid=d6a71f40-64bb-58d4-82a2-553d642e6462&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T18%3A52%3A43Z&ske=2026-09-19T18%3A52%3A43Z&sks=b&skv=2026-02-06&sig=8BP3Pmnkf9tnIfG5uMf/29LGZC%2BpSUr5Xp7G3Q5bm3Q%3D'
+      - name: Commit tiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add email/palecek-2026/08*.jpg email/palecek-2026/09*.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m "Add direct-linked Casey and Augustine tiles"
+          git push origin HEAD:email-assets
