@@ -1,0 +1,42 @@
+name: Publish KSM email assets CDN
+
+on:
+  push:
+    branches: [email-assets]
+    paths:
+      - '.github/workflows/publish-email-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: email-assets
+
+      - name: Download assets from KSM
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p email/palecek-2026
+          base='https://ksm.kaliestudio.com/email/palecek-2026'
+          for f in             01_hero.jpg             02_authority.jpg             03_contact_top.png             04_eden.jpg             05_custom.jpg             06_tables.jpg             07_westin.jpg             08_dining.jpg             09_lighting.jpg             10_lifestyle.jpg             11_ksm.jpg             12_contact_footer.png             13_footer.png
+          do
+            echo "Downloading $f"
+            curl -L --fail --retry 4 --retry-delay 2 -A 'Mozilla/5.0' -o "email/palecek-2026/$f" "$base/$f"
+            test -s "email/palecek-2026/$f"
+          done
+
+      - name: Commit assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add email/palecek-2026
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish KSM Palecek email assets"
+          git push origin HEAD:email-assets
